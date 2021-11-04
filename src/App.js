@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Characters from './components/Characters';
+import './App.css';
+import ListFavoris from './components/ListFavoris';
+import Button from './components/Button';
 
 
 class App extends Component {
@@ -9,8 +12,12 @@ class App extends Component {
 
     this.state = {
       characters: [],
-      favorites: []
+      favorites: [],
+      actibeTab: ""
     }
+
+    this.handleFavoriteClick = this.handleFavoriteClick.bind(this)
+    this.handleButtonClick = this.handleButtonClick.bind(this)
   }
 
   componentDidMount() {
@@ -26,25 +33,39 @@ class App extends Component {
   }
 
   handleFavoriteClick(character) {
-    console.log("character", character)
+    // console.log("character", character)
+    const newFavorite = [...this.state.favorites, character]
+    this.setState({ favorites: newFavorite })
+    console.log(this.state.favorites)
+  }
+
+  handleButtonClick(str) {
+    console.log("hello")
+    this.setState({ activeTab: str })
   }
 
 
   render() {
+    const { activeTab, favorites, characters } = this.state
     // console.log(this.state)
     return (
       <div className="container">
         <h1>Game of thrones</h1>
+        <Button
+          text="favoris"
+          handleClick={this.handleButtonClick}
+        />
+        {/* {activeTab === "favoris" && <ListFavoris favorites={favorites} />} */}
+        {activeTab === "favoris" ? <div className="row "><ListFavoris favorites={favorites} /> </div> : 
         <div className="row ">
-         {this.state.characters.map(character => (
           <Characters
-           handleFavoriteClick={this.handleFavoriteClick} 
-           character={character} 
-           />
-          ))}
+            handleFavoriteClick={this.handleFavoriteClick}
+            characters={characters}
+            />
         </div>
-      </div>
-      );
+        } 
+        </div>
+    );
   }
 }
 
