@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { MdOutlineFavorite } from 'react-icons/md';
 
 class Characters extends Component {
     render() {
@@ -9,12 +9,20 @@ class Characters extends Component {
         return (
             <>
                 {characters.map(character => (
-                    <div className="col-4" >
-                        <div className="border border-2  my-3" >
-                            <img className="image mx-auto d-block" src={character.imageUrl} alt="" />
-                            <h2 className="text-center">{character.fullName}</h2>
-                            <p className="text-center">{character.title}</p>
-                            <button className="btn btn-primary my-2 ms-2" onClick={() => handleFavoriteClick(character)} >Ajouter aux favoris</button>
+                    <div className="col-2 my-3" >
+                        <div className=" my-1 h-100 box"  key={character.id} >
+                            <img className="image mb-3" src={character.imageUrl} alt="" />
+                            <h4 className="text-center">{character.fullName}</h4>
+                            <p className="text-center title">{character.title}</p>
+                            <div className="d-flex justify-content-center">
+                                {/* <button 
+                                className="btn btn-outline-warning  my-2 ms-2" 
+                                onClick={() => handleFavoriteClick(character)}
+                                 >Favoris
+                                </button> */}
+                                
+                                <MdOutlineFavorite  color="yellow" size="25px" onClick={() => handleFavoriteClick(character)} />
+                            </div>
                         </div>
                     </div>
                 ))}

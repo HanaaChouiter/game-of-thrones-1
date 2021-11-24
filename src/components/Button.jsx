@@ -6,7 +6,7 @@ class Button extends Component {
         return (
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-warning my-3"
                 onClick={() => handleClick(text)}
             >
                 Personnages favoris

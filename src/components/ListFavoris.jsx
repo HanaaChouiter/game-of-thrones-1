@@ -2,18 +2,21 @@ import React, { Component } from 'react';
 
 class ListFavoris extends Component {
     render() {
-        const { favorites } = this.props
+        const { favorites, deleteCharacter} = this.props
         return (
             <>
-                {favorites.map(character => (
-                    <div className="col-4" >
-                        <div className="border border-2  my-3" key={character.id}>
-                            <img className="image mx-auto d-block" src={character.imageUrl} alt="" />
-                            <h2 className="text-center">{character.fullName}</h2>
-                            <p className="text-center">{character.title}</p>
+                {favorites.map((characterFavoris, index) => (
+                   <div className="col-2 my-3" >
+                        <div className="border border-2 border-warning h-100 box my-3" key={characterFavoris.id}>
+                            <img className="image mb-3" src={characterFavoris.imageUrl} alt="" />
+                            <h4 className="text-center ">{characterFavoris.fullName}</h4>
+                            <p className="text-center title">{characterFavoris.title}</p>
+                            <button className="btn btn-outline-danger my-2 ms-2" onClick={() =>deleteCharacter(index)} >Supprimer</button>
                         </div>
                     </div>
+                    
                 ))}
+              
             </>
         );
     }
